@@ -1,0 +1,30 @@
+
+header#page-header {
+  color: #FA0303;
+  background-image: url("car.png");
+  background-size: contain;
+  background-repeat: no-repeat; 
+  padding: 60px;
+  border-bottom: 5px solid darken(#237CBE, 10%);
+  text-align: left;
+  text-indent: 50px;
+  text-shadow: 2px 2px black;
+  font-size: 20px;
+}
+footer#page-footer {
+  color: #FA0303;
+  background: #000000;
+  text-align: center;
+  padding: 5px;
+  border-top: 3px solid darken(#F0F0F0, 10%);
+}
+
+aside#sidebar {
+  display:flex;
+  float: right;
+  list-style: none;
+  text-decoration: none;
+  padding-top: 5px;
+  background: #F0F0F0;
+  width: 220px;
+}

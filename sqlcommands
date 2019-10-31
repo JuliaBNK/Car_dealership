@@ -1,0 +1,36 @@
+Table #1
+
+create table cars (
+     id int unsigned not null auto_increment primary key,
+     make tinytext not null,
+     model tinytext,
+     year int unsigned not null,
+     type tinytext,
+     status tinytext,
+     mileage int unsigned not null,
+     color tinytext,
+     price int unsigned,
+     sale_price int unsigned,
+     description text,
+     salesperson_id int unsigned,
+     buyer_id int unsigned,
+     sale_date date);
+
+Table #2
+ create table salespersons (
+     id int unsigned not null auto_increment primary key,
+     last tinytext,
+     first tinytext,
+     address tinytext,
+     phone int unsigned,
+     email tinytext);
+
+Table # 3
+
+ create table buyers (
+     id int unsigned not null auto_increment primary key,
+     last tinytext,
+     first tinytext,
+     address tinytext,
+     phone int unsigned,
+     email tinytext);
