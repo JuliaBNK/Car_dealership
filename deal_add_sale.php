@@ -13,19 +13,11 @@ if (!isset($_POST['submit']))
   <!-- Display a form to capture information -->
   <h2> Add New Sale </h2>
   <form action="deal_add_sale.php" method="post">
-    <table border="0">
-      <tr>
-        <td> Car ID </td>
-        <td align="left"><input type="text" name="id" size="35" maxlength="35"></td>
-      </tr>
-      <tr>
-        <td> Salesperson ID </td>
-        <td align="left"><input type="text" name="salesperson_id" size="35" maxlength="35"></td>
-      </tr>
-      <tr>
-      <td> Buyer ID </td>
-        <td align="left"><input type="text" name="buyer_id" size="35" maxlength="35"></td>
-      </tr>
+
+  <button style="width: 250px; position: relative; left:75px;">Choose a car</button></br>
+  <button style="width: 250px; position: relative; left:75px;">Salesperson</button></br>   
+  <button style="width: 250px; position: relative; left:75px;">Buyer</button> </br>
+ <table border="0">
       <tr>
       <td> Date </td>
         <td align="left"><input type="text" name="date" size="35" maxlength="35"></td>
