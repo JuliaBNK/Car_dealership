@@ -1,4 +1,7 @@
 <!doctype html>
+<html>
+
+</html>
 <?php
 require('deal_functions.php');
 html_head("Add New Sale");
@@ -14,10 +17,14 @@ if (!isset($_POST['submit']))
   <h2> Add New Sale </h2>
   <form action="deal_add_sale.php" method="post">
 
-  <button style="width: 250px; position: relative; left:75px;">Choose a car</button></br>
-  <button style="width: 250px; position: relative; left:75px;">Salesperson</button></br>   
-  <button style="width: 250px; position: relative; left:75px;">Buyer</button> </br>
- <table border="0">
+  <button style="width: 250px; height: 25px; position: relative; left:75px;">Choose a car</button></br>
+  </br>
+  
+  <button style="width: 250px; height: 25px; position: relative; left:75px;">Salesperson</button></br>   
+  </br>  
+ <button style="width: 250px; height: 25px; position: relative; left:75px;">Buyer</button> </br>
+ </br> 
+<table border="0">
       <tr>
       <td> Date </td>
         <td align="left"><input type="text" name="date" size="35" maxlength="35"></td>
