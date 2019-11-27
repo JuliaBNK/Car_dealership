@@ -12,7 +12,7 @@
       <a href="deal_find_car.php">Find a car</a><br/>
      </li>
       <li>
-       <a href="deal_add_sale.php">Add sale</a><br/>
+       <a href="deal_add_sale.php">Add a sale</a><br/>
       </li>
        <li>
        <a href="deal_sales.php">Sold cars</a><br/>

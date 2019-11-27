@@ -15,7 +15,7 @@ if (!isset($_POST['submit']))
   <form action="deal_find_car.php" method="post">
     <table border="0">
 
-     <tr>
+    <tr>
         <td> Status </td>
         <td align="left"><select name="status">
 <?php
@@ -29,7 +29,7 @@ if (!isset($_POST['submit']))
     $result = $db->query("SELECT distinct status FROM cars");
     foreach($result as $row)
     {
-      print "<option value=".$row['id'].">".$row['status']."</option>";
+      print "<option value=".$row['status'].">".$row['status']."</option>";
     }
     // close the database connection
     $db = NULL;
@@ -44,35 +44,6 @@ if (!isset($_POST['submit']))
    </select><br/>
       </tr>
 
-      <tr> 
-        <td> Make </td>
-        <td align="left"><select name="make">
-<?php
-   try
-   {
-    //open the database
-    $db = new PDO(DB_PATH, DB_LOGIN, DB_PW);
-    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-    //display all makes in the cars table
-    $result = $db->query("SELECT distinct make FROM cars");
-    foreach($result as $row)
-    {
-      print "<option value=".$row['id'].">".$row['make']."</option>";
-    }
-    // close the database connection
-    $db = NULL;
-    }
-
-  catch(PDOException $e)
-  {
-    echo 'Exception : '.$e->getMessage();
-    echo "<br/>";
-    $db = NULL;
-  }  
-?>
-   </select><br/>
-      </tr>
 
       <tr>
       <td> Type </td>
@@ -86,10 +57,10 @@ if (!isset($_POST['submit']))
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     //display all types in the types table
-    $result = $db->query("SELECT * FROM car_types");
+    $result = $db->query("SELECT distinct type FROM cars");
     foreach($result as $row)
     {
-      print "<option value=".$row['id'].">".$row['name']."</option>";
+      print "<option value=".$row['type'].">".$row['type']."</option>";
     }
 
     // close the database connection
@@ -105,6 +76,35 @@ if (!isset($_POST['submit']))
       </select>
       </td>
       </tr>
+     <tr> 
+        <td> Make </td>
+        <td align="left"><select name="make">
+<?php
+   try
+   {
+    //open the database
+    $db = new PDO(DB_PATH, DB_LOGIN, DB_PW);
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    //display all makes in the cars table
+    $result = $db->query("SELECT distinct make FROM cars");
+    foreach($result as $row)
+    {
+      print "<option value=".$row['make'].">".$row['make']."</option>";
+    }
+    // close the database connection
+    $db = NULL;
+    }
+
+  catch(PDOException $e)
+  {
+    echo 'Exception : '.$e->getMessage();
+    echo "<br/>";
+    $db = NULL;
+  }  
+?>
+   </select><br/>
+      </tr>
 
      <tr>
         <td> Max Mileage </td>
@@ -115,7 +115,7 @@ if (!isset($_POST['submit']))
         <td align="left"><input type="text" name="price" size="35" maxlength="35"></td>
       </tr>
       <tr>
-        <td colspan="2" align="right"><input type="submit" name="submit" value="Search"></td>
+        <td colspan="2" align="right"><input type="submit" name="submit" value="Submit"></td>
       </tr>
     </table>
   </form>
@@ -123,33 +123,27 @@ if (!isset($_POST['submit']))
 } else {
   # Process the information from the form displayed
   $status = $_POST['status'];
+  $type = $_POST['type']; 
   $make = $_POST['make'];
-  $type = $_POST['type'];
   $mileage = $_POST['mileage'];
   $price = $_POST['price'];
 
   // clean up and validate data
-//  $status = trim($status); 
-  //$make = trim($make);
-  //$type = trim($type);
+  $status  = trim($status);
+  $make = trim($make);
+  $type = trim($type);
   $mileage = trim($mileage);
   $price = trim($price);
 
-//print "<h3>".$status."</h3>";
-//print $make;
-//print $type;
-//print $mileage;
-//print $price;
-
-  
   $error_messages = array(); # Create empty error_messages array.
-  
+
+
   if ( strlen($mileage) == 0 ) {
     $mileage =doubleval($mileage);
     $mileage = 1000000;
   } else if (strlen($mileage) > 0 && !preg_match("/^[0-9]+$/", $mileage)) {
    array_push($error_messages, "Only digits can be used in mileage field.");
-  } else {
+  } else if (strlen($mileage) > 0 && preg_match("/^[0-9]+$/", $mileage)) {
   $mileage = doubleval($mileage);
   }
 
@@ -169,16 +163,16 @@ if (empty($error_messages)) {
     //open the database
     $db = new PDO(DB_PATH, DB_LOGIN, DB_PW);
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    
+    $result1 = $db->query("SELECT count(*) FROM cars WHERE make = '$make' AND type = '$type' AND mileage <= $mileage AND price <= $price AND status = '$status'")->fetch();    
+    $count = $result1[0];
 
-    print "<h2>Cars Found: </h2>";
+    print "<h2>Cars Found: $count </h2>";
     print "<table border=1>";
     print "<tr>";
     print "<td>Make</td><td>Model</td><td>Year</td><td>Type</td><td>Mileage</td><td>Color</td><td>Price</td><td>Sale price</td><td>Description</td><td>Status</td>";
     print "</tr>";
 
-    $query = "SELECT * FROM cars WHERE make = '$make' AND type = '$type' AND mileage <= $mileage AND price <= $price AND status = '$status'";
-    $result = $db->query($query);
+    $result = $db->query("SELECT * FROM cars WHERE make = '$make' AND type = '$type' AND mileage <= $mileage AND price <= $price AND status = '$status'");
     foreach($result as $row) {
       print "<tr>";
       print "<td>".$row['make']."</td>";

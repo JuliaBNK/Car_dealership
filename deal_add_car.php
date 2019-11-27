@@ -38,10 +38,10 @@ if (!isset($_POST['submit']))
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     //display all types in the types table
-    $result = $db->query('SELECT * FROM car_types');
+    $result = $db->query("SELECT distinct type FROM cars");
     foreach($result as $row)
     {
-      print "<option value=".$row['name'].">".$row['name']."</option>";
+      print "<option value=".$row['type'].">".$row['type']."</option>";
     }
 
     // close the database connection
@@ -114,7 +114,7 @@ if (!isset($_POST['submit']))
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
    //insert data
-    $db->exec("INSERT INTO cars (make, model, year, type, mileage, color, price, description, status) VALUES ('$make', '$model','$year','$type', '$mileage', '$color', '$price', '$description', 'available');");
+    $db->exec("INSERT INTO cars (make, model, year, type, mileage, color, price, description, status) VALUES ('$make', '$model','$year','$type', '$mileage', '$color', '$price', '$description', 'Available');");
     //get the last id value inserted into the table
     $last_id = $db->lastInsertId();
 
