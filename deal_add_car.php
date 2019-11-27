@@ -24,29 +24,57 @@ if (!isset($_POST['submit']))
       </tr>
       <tr>
       <td> Year </td>
-        <td align="left"><input type="text" name="year" size="35" maxlength="35"></td>
+        <td align="left"><input type="text" name="year" size="35" maxlength="4"></td>
       </tr>
       <tr>
       <td> Type </td>
-        <td align="left"><input type="text" name="type" size="35" maxlength="35"></td>
+      <td align="left"><select name="type"> 
+<?php
+  // Replace text field with a select pull down menu.
+  try
+  {
+    //open the database
+    $db = new PDO(DB_PATH, DB_LOGIN, DB_PW);
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    //display all types in the types table
+    $result = $db->query('SELECT * FROM car_types');
+    foreach($result as $row)
+    {
+      print "<option value=".$row['name'].">".$row['name']."</option>";
+    }
+
+    // close the database connection
+    $db = NULL;
+  }
+
+
+  catch(PDOException $e)
+  {
+    echo 'Exception : '.$e->getMessage();
+    echo "<br/>";
+    $db = NULL;
+  }
+?>  
+      </select>
+      </td>
       </tr>
       <tr>
       <td> Mileage </td>
-        <td align="left"><input type="text" name="mileage" size="35" maxlength="35"></td>
+        <td align="left"><input type="text" name="mileage" size="35" maxlength="10"></td>
       </tr>
       <tr>
       <td> Color </td>
-        <td align="left"><input type="text" name="author" size="35" maxlength="35"></td>
+        <td align="left"><input type="text" name="color" size="35" maxlength="35"></td>
       </tr>
       <tr>
       <td> Price </td>
-        <td align="left"><input type="text" name="author" size="35" maxlength="35"></td>
+        <td align="left"><input type="text" name="price" size="35" maxlength="35"></td>
       </tr>
       <tr>
         <td> Description </td>
         <td align="left"><input type="text" name="description" size="80" maxlength="120"></td>
       </tr>
-
       <tr>
         <td colspan="2" align="right"><input type="submit" name="submit" value="Submit"></td>
       </tr>
@@ -73,6 +101,13 @@ if (!isset($_POST['submit']))
   $color = trim($color);
   $price = trim($price);
   $description = trim($description); 
+ //  $price = doubleval($price);
+ // $year = intval($year);
+ // $mileage = intval($mileage);
+ 
+  $errors = validate_car($make, $model, $year, $mileage, $color, $price, $description);
+  
+  if (empty($errors)) { 
   try{
     //open the database
     $db = new PDO(DB_PATH, DB_LOGIN, DB_PW);
@@ -112,9 +147,14 @@ if (!isset($_POST['submit']))
     echo "<br/>";
     $db = NULL;
  }
+}else {
+    echo "Errors found in car's entry:<br/>";
+    foreach($errors as $error) {
+      echo " -  $error <br/>";
+    }
+    try_again("Please correct.<br/>");
+  }
 }
 require('deal_footer.php');
+
 ?>
-
-
-

@@ -17,7 +17,7 @@ try {
 <!-- display all buyers -->
 <table border=1>
   <tr>
-   <td>ID</td><td>Last Name</td><td>First Name</td><td>Address</td><td>Phone</td><td>Email</td>
+   <td>ID</td><td>Last Name</td><td>First Name</td><td>Address</td><td>City</td><td>State</td><td>Zip Code</td><td>Phone</td><td>Email</td>
   </tr>
  
 <?php
@@ -29,6 +29,9 @@ $result = $db->query($query);
   print "<td>".$row['last']."</td>";
   print "<td>".$row['first']."</td>";
   print "<td>".$row['address']."</td>";
+  print "<td>".$row['city']."</td>";
+  print "<td>".$row['state']."</td>";
+  print "<td>".$row['zipcode']."</td>";
   print "<td>".$row['phone']."</td>";
   print "<td>".$row['email']."</td>";
   print "</tr>";

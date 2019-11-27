@@ -2,7 +2,7 @@
 <?php
 require('deal_functions.php');
 require('deal_values.php');
-html_head("Cars");
+html_head("Cars for sale");
 require('deal_header.php');
 require('deal_sidebar.php');
 
@@ -13,7 +13,7 @@ try {
   $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 ?>
 
-<h2>Cars</h2>
+<h2>Cars for sale</h2>
 <!-- display all cars -->
 <table border=1>
   <tr>

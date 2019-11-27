@@ -6,7 +6,7 @@
         <a href="deal_add_car.php">Add a car</a><br/>
       </li>
      <li>
-       <a href="deal_cars.php">Cars</a><br/>
+       <a href="deal_cars.php">Cars for sale</a><br/>
       </li>
       <li> 
       <a href="deal_find_car.php">Find a car</a><br/>
@@ -15,7 +15,7 @@
        <a href="deal_add_sale.php">Add sale</a><br/>
       </li>
        <li>
-       <a href="deal_sales.php">Completed sales</a><br/>
+       <a href="deal_sales.php">Sold cars</a><br/>
       </li>
       <li>
       <a href="deal_add_salesperson.php">Add a salesperson </a><br/>
