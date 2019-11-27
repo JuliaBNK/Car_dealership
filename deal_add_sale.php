@@ -80,7 +80,7 @@ if (!isset($_POST['submit']))
       </tr>
       <tr>
       <td> Sale Price </td>
-        <td align="left"><input type="text" name="sale_price" size="35" maxlength="35"></td>
+        <td align="left"><input type="text" name="sale_price" size="35" maxlength="6"></td>
       </tr>
       <tr>
         <td colspan="2" align="right"><input type="submit" name="submit" value="Submit"></td>
@@ -145,10 +145,8 @@ catch(PDOException $e){
    //validate sale date
     if (!MyCheckDate($date)) {
       array_push($error_messages, "You have entered an invalid date. Format is yyyy-mm-dd.");
-    }
-
-    //check for date in the past
-    if ($date < $today) {
+    }    //check for date in the past
+    else if ($date < $today) {
      array_push($error_messages, "The sale date is earlier than today. ");
     }
 

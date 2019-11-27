@@ -61,7 +61,7 @@ if (!isset($_POST['submit']))
       </tr>
       <tr>
       <td> Mileage </td>
-        <td align="left"><input type="text" name="mileage" size="35" maxlength="10"></td>
+        <td align="left"><input type="text" name="mileage" size="35" maxlength="9"></td>
       </tr>
       <tr>
       <td> Color </td>
@@ -69,7 +69,7 @@ if (!isset($_POST['submit']))
       </tr>
       <tr>
       <td> Price </td>
-        <td align="left"><input type="text" name="price" size="35" maxlength="35"></td>
+        <td align="left"><input type="text" name="price" size="35" maxlength="6"></td>
       </tr>
       <tr>
         <td> Description </td>

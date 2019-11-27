@@ -109,11 +109,11 @@ if (!isset($_POST['submit']))
 
      <tr>
         <td> Max Mileage </td>
-        <td align="left"><input type="text" name="mileage" size="35" maxlength="35"></td>
+        <td align="left"><input type="text" name="mileage" size="35" maxlength="6"></td>
       </tr>
       <tr>
         <td> Max Price </td>
-        <td align="left"><input type="text" name="price" size="35" maxlength="35"></td>
+        <td align="left"><input type="text" name="price" size="35" maxlength="6"></td>
       </tr>
       <tr>
         <td colspan="2" align="right"><input type="submit" name="submit" value="Submit"></td>
@@ -164,6 +164,23 @@ if (empty($error_messages)) {
     //open the database
     $db = new PDO(DB_PATH, DB_LOGIN, DB_PW);
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+   if ($status == "0") {
+    $result1 = $db->query("SELECT count(*) FROM cars WHERE make = '$make' AND type = '$type' AND mileage <= $mileage AND price <= $price")->fetch();    
+    $count = $result1[0];
+
+    print "<h2>Cars Found: $count </h2>";
+    print "<table border=1>";
+    print "<tr>";
+    print "<td>Make</td><td>Model</td><td>Year</td><td>Type</td><td>Mileage</td><td>Color</td><td>Price</td><td>Sale price</td><td>Description</td><td>Status</td>";
+    print "</tr>";
+
+    $result = $db->query("SELECT * FROM cars WHERE make = '$make' AND type = '$type' AND mileage <= $mileage AND price <= $price");
+   }
+
+else  {
+
+
     $result1 = $db->query("SELECT count(*) FROM cars WHERE make = '$make' AND type = '$type' AND mileage <= $mileage AND price <= $price AND status = '$status'")->fetch();    
     $count = $result1[0];
 
@@ -174,6 +191,7 @@ if (empty($error_messages)) {
     print "</tr>";
 
     $result = $db->query("SELECT * FROM cars WHERE make = '$make' AND type = '$type' AND mileage <= $mileage AND price <= $price AND status = '$status'");
+}
     foreach($result as $row) {
       print "<tr>";
       print "<td>".$row['make']."</td>";
