@@ -73,7 +73,7 @@ if (!isset($_POST['submit']))
   $phone = trim($phone);
   $email = trim($email);
 
-  $errors = validate_person($last, $first, $address, $city, $state, $zipcode, $phone, $email);
+  $errors = validate_salesperson($last, $first, $address, $city, $state, $zipcode, $phone, $email);
   if (empty($errors)) {
    try{
     //open the database

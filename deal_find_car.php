@@ -18,6 +18,7 @@ if (!isset($_POST['submit']))
     <tr>
         <td> Status </td>
         <td align="left"><select name="status">
+       <option value="0"></option> 
 <?php
    try
    {
