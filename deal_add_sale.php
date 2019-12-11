@@ -147,7 +147,10 @@ catch(PDOException $e){
       array_push($error_messages, "You have entered an invalid date. Format is yyyy-mm-dd.");
     }    //check for date in the past
     else if ($date < $today) {
-     array_push($error_messages, "The sale date is earlier than today. ");
+     array_push($error_messages, "The sale date is in the past. Enter today date. ");
+    }
+   else if ($date > $today) {
+     array_push($error_messages, "The sale date is in the future. Enter today date. ");
     }
 
     if ( strlen($sale_price)  == 0 ) {

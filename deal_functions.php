@@ -1,5 +1,4 @@
 <?php
-//require('mlib_values.php');
 # CSCI59P standard functions
 
 function html_head($title) {
@@ -17,7 +16,7 @@ function try_again($str){
   echo $str;
   echo "<br/>";
   // emulation of pressing the back button on the browser
-  echo '<a href="#" onclick="history.back(); return false;">Try Again</a>';
+  echo '<a href="#" onclick="history.back(); return false;">Go back</a>';
   require('deal_footer.php');
   exit;
 
@@ -208,12 +207,15 @@ function validate_car($make, $model, $year, $mileage, $color, $price, $descripti
   $error_messages = array(); # Create empty error_messages array.
   if ( strlen($make)  == 0 ) {
     array_push($error_messages,"Make field cannot be empty.");
+  }else  if (!preg_match("/^[a-zA-Z ]*$/",$make)) {
+    array_push($error_messages,"Only letters and white space can be used in make field.");
   }
 
   if ( strlen($model)  == 0 ) {
     array_push($error_messages,"Model field cannot be empty.");
-  }
-
+  }  else  if (!preg_match("/^[a-zA-Z1-9 \-]*$/", $model)) {
+    array_push($error_messages,"You can use only letters, digits, white space, and dash in model field.");
+ }
   if (strlen($year) == 0) {
     array_push($error_messages, "Year field cannot be empty.");
   } else if ( !preg_match("/^[0-9][0-9][0-9][0-9]$/", $year))  {
@@ -238,15 +240,13 @@ function validate_car($make, $model, $year, $mileage, $color, $price, $descripti
 
   if ( strlen($color) == 0 ) {
     array_push($error_messages, "Color field cannot be empty.");
-  }
-
-  if (!preg_match("/^[a-zA-Z ]*$/",$color)) {
+  }else  if (!preg_match("/^[a-zA-Z ]*$/",$color)) {
     array_push($error_messages,"Only letters and white space can be used in color field.");
   }
 
   if ( strlen($price)  == 0 ) {
     array_push($error_messages, "Price field cannot be empty.");
-  }else if( !preg_match("/^[0-9]+$/", $price )){
+  }else if( !preg_match("/^[0-9 \.]+$/", $price )){
      array_push($error_messages,"Only digits can be used in price field.");
   } else {
   $price = doubleval($price); 
@@ -255,8 +255,11 @@ function validate_car($make, $model, $year, $mileage, $color, $price, $descripti
 
   if ( strlen($description) == 0 ) {
     array_push($error_messages, "Description field cannot be empty.");
+  } else  if (!preg_match("/^[a-zA-Z1-9 \- \. \,]*$/", $description)) {
+    array_push($error_messages,"You can use only letters, digits, white space, dash, comma, and period in description field.");
   }
 
+if (empty($error_messages)) { 
 
 try {
     //open the database
@@ -265,7 +268,7 @@ try {
 
 //check for duplicate car
     if ( strlen($make) != 0 and strlen($model) != 0 and strlen($description) != 0) {
-      $sql = "SELECT COUNT(*) FROM cars WHERE make = '$make' AND model = '$model' AND description = '$description'";
+      $sql = "SELECT COUNT(*) FROM cars WHERE make = '$make' AND model = '$model' AND description = '$description' AND year = $year AND type = '$type' AND mileage = $mileage and color = '$color' AND price = $price";
       $result = $db->query($sql)->fetch(); //count the number of entries with these  fields
       if ( $result[0] > 0) {
         array_push($error_messages, "This car is already in database.");
@@ -278,7 +281,7 @@ try {
     echo "<br/>";
     $db = NULL;
   }
-
+}
   return $error_messages;
 }
 
