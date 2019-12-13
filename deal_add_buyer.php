@@ -3,8 +3,14 @@
 require('deal_functions.php');
 html_head("Add a Buyer");
 require('deal_header.php');
-require('deal_sidebar.php');
 require('deal_values.php');
+session_start();
+require('deal_sidebar.php');
+
+if (we_are_not_admin()) {
+  exit;
+}
+
 
 # Code for your web page follows.
 if (!isset($_POST['submit']))

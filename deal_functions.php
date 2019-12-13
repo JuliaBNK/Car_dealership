@@ -296,4 +296,14 @@ function MyCheckDate( $postedDate ) {
 }
 
 
+// Check to see if we are logged in as an admin
+function we_are_not_admin()
+{
+  if (empty($_SESSION['valid_user'])) {
+    echo "Only an authorized user can access this page.<br/>";
+    require('deal_footer.php');
+        return true;
+        }
+}
+
 ?>

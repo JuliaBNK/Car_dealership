@@ -1,12 +1,12 @@
 <aside id="sidebar">
     <nav>
+    <ul>
      <li>
-        <a href="deal_login.php">Login in</a><br/>
+        <a href="deal_login.php">Log in</a><br/>
       </li>    
 <?php
   if (!empty($_SESSION['valid_user'])) {
 ?>
-    <ul>
       <li>
         <a href="deal_add_car.php">Add a car</a><br/>
       </li>

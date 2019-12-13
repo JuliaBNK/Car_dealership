@@ -4,7 +4,13 @@ require('deal_functions.php');
 require('deal_values.php');
 html_head("Salespersons");
 require('deal_header.php');
+session_start();
 require('deal_sidebar.php');
+
+if (we_are_not_admin()) {
+  exit;
+}
+
 
 # Code for your web page follows.
 try {

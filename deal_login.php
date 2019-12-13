@@ -2,8 +2,9 @@
 <?php
 session_start();
 require('deal_functions.php');
-html_head("deal login");
+html_head("Login");
 require('deal_header.php');
+require('deal_values.php');
 
 # Has the user entered a login and password?
 if (isset($_POST['login']) && isset($_POST['password']))
@@ -43,10 +44,11 @@ if (isset($_SESSION['valid_user'])) {
   if (isset($login)) {
     //user tried to login but either wrong password or wrong login
     echo "Either your login or password is incorrect.".'<br/>';
+    try_again("Please correct.<br/>");
   } else {
     //the user is coming through for the first time so display a form to accept login and password
     ?>
-    <h2>Login in to Dealership website</h2>
+    <h2>Log in to Dealership Site</h2>
     <form action="deal_login.php" method="post">
       <table border="0">
         <tr>
