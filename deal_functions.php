@@ -268,7 +268,7 @@ try {
 
 //check for duplicate car
     if ( strlen($make) != 0 and strlen($model) != 0 and strlen($description) != 0) {
-      $sql = "SELECT COUNT(*) FROM cars WHERE make = '$make' AND model = '$model' AND description = '$description' AND year = $year AND type = '$type' AND mileage = $mileage and color = '$color' AND price = $price";
+      $sql = "SELECT COUNT(id) FROM cars WHERE make = '$make' AND model = '$model' AND description = '$description' AND year = $year AND type = '$type' AND mileage = $mileage and color = '$color' AND price = $price";
       $result = $db->query($sql)->fetch(); //count the number of entries with these  fields
       if ( $result[0] > 0) {
         array_push($error_messages, "This car is already in database.");

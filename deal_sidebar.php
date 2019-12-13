@@ -1,6 +1,11 @@
 <aside id="sidebar">
     <nav>
-    
+     <li>
+        <a href="deal_login.php">Login in</a><br/>
+      </li>    
+<?php
+  if (!empty($_SESSION['valid_user'])) {
+?>
     <ul>
       <li>
         <a href="deal_add_car.php">Add a car</a><br/>
@@ -29,6 +34,13 @@
       <li>
        <a href="deal_buyers.php">Buyers</a><br/>
       </li>
+       <li>
+        <a href="deal_logout.php">Log out</a><br/>
+      </li>
+<?php
+  }
+?>
+
     </ul>
     </nav>
 </aside>
