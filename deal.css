@@ -22,7 +22,7 @@ footer#page-footer {
 aside#sidebar {
   display:flex;
   float: right;
-  list-style: none;
+  list-style-type: none;
   text-decoration: none;
   padding-top: 5px;
   background: #F0F0F0;

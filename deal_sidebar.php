@@ -34,6 +34,9 @@
       <li>
        <a href="deal_buyers.php">Buyers</a><br/>
       </li>
+      <li>
+       <a href="deal_administrator.php">Access configuration</a><br/>
+      </li>
        <li>
         <a href="deal_logout.php">Log out</a><br/>
       </li>

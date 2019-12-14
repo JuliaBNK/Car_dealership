@@ -203,7 +203,7 @@ try {
 
 
 
-function validate_car($make, $model, $year, $mileage, $color, $price, $description) {
+function validate_car($make, $model, $year, $mileage, $color, $type, $price, $description) {
   $error_messages = array(); # Create empty error_messages array.
   if ( strlen($make)  == 0 ) {
     array_push($error_messages,"Make field cannot be empty.");

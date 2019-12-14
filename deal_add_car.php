@@ -110,7 +110,7 @@ if (!isset($_POST['submit']))
  // $year = intval($year);
  // $mileage = intval($mileage);
  
-  $errors = validate_car($make, $model, $year, $mileage, $color, $price, $description);
+  $errors = validate_car($make, $model, $year, $mileage, $color, $type, $price, $description);
   
   if (empty($errors)) { 
   try{
