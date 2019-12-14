@@ -207,8 +207,8 @@ function validate_car($make, $model, $year, $mileage, $color, $type, $price, $de
   $error_messages = array(); # Create empty error_messages array.
   if ( strlen($make)  == 0 ) {
     array_push($error_messages,"Make field cannot be empty.");
-  }else  if (!preg_match("/^[a-zA-Z ]*$/",$make)) {
-    array_push($error_messages,"Only letters and white space can be used in make field.");
+  }else  if (!preg_match("/^[a-zA-Z -]*$/",$make)) {
+    array_push($error_messages,"Only letters, white space and dash can be used in make field.");
   }
 
   if ( strlen($model)  == 0 ) {
