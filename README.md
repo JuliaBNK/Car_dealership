@@ -5,3 +5,6 @@ It also will be possible to check what new or used cars are available in the dea
 and add information about a buyer and a salesperson during the sale. 
 Just authorized users like salespersons are allowed to use this website. 
 Therefore, each user should log in to get access to these webpages. 
+http://cs.sierracollege.edu/~ibuniak/final_project/deal_login.php
+Login: jbuniak
+Password: julia123
